@@ -186,6 +186,7 @@ namespace Presentacion
             this.nuevoToolStripMenuItem.Name = "nuevoToolStripMenuItem";
             this.nuevoToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
             this.nuevoToolStripMenuItem.Text = "&Nuevo";
+            this.nuevoToolStripMenuItem.Click += new System.EventHandler(this.nuevoToolStripMenuItem_Click);
             // 
             // guardarToolStripMenuItem
             // 
@@ -199,6 +200,7 @@ namespace Presentacion
             this.actualizarToolStripMenuItem.Name = "actualizarToolStripMenuItem";
             this.actualizarToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
             this.actualizarToolStripMenuItem.Text = "&Actualizar";
+            this.actualizarToolStripMenuItem.Click += new System.EventHandler(this.actualizarToolStripMenuItem_Click);
             // 
             // salirToolStripMenuItem
             // 
@@ -768,6 +770,7 @@ namespace Presentacion
             this.BtnEnter.TabIndex = 45;
             this.BtnEnter.Text = "Enter";
             this.BtnEnter.UseVisualStyleBackColor = false;
+            this.BtnEnter.Click += new System.EventHandler(this.BtnEnter_Click);
             // 
             // tblEstadoCivilTableAdapter
             // 

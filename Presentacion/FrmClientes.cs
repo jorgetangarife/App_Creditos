@@ -132,12 +132,43 @@ namespace Presentacion
                 var = var + "9"; TxtId.Text = var; contador++;
             }
         }
-
-        private void btnSupri_Click(object sender, EventArgs e)
+        protected void Fnt_LimpiarControles()
         {
+            TxtNombre.Clear();
+            TxtContacto.Clear();
+            TxtCorreo.Clear();
+            TxtEdad.Clear();
+            TxtEmpresa.Clear();
+            TxtIngresos.Clear();
+            TxtConEmpre.Clear();
+            CbxEstado.SelectedIndex = 0;
+            CbxSexo.SelectedIndex = 0;
             TxtId.Clear();
             contador = 0;
             var = "";
+            Fnt_HabilitarTeclaso();
+            TxtId.Focus();          
+        }
+        protected void Fnt_HabilitarTeclaso()
+        {
+            btn0.Enabled = true;
+            btn1.Enabled = true;
+            btn2.Enabled = true;
+            btn3.Enabled = true;
+            btn4.Enabled = true;
+            btn5.Enabled = true;
+            btn6.Enabled = true;
+            btn7.Enabled = true;
+            btn8.Enabled = true;
+            btn9.Enabled = true;
+            BtnEnter.Enabled = true;
+            TxtNombre.Enabled = true;
+            CbxSexo.Enabled = true;
+        }
+
+        private void btnSupri_Click(object sender, EventArgs e)
+        {        
+            Fnt_LimpiarControles();
         }
 
         private void salirToolStripMenuItem_Click(object sender, EventArgs e)
@@ -254,6 +285,68 @@ namespace Presentacion
         private void guardarToolStripMenuItem_Click(object sender, EventArgs e)
         {
             Fnt_AgregarClientes();
+        }
+
+        protected void Fnt_ConsultarCliente()
+        {
+            ClsClientes_Negocios ObjConsultar = new ClsClientes_Negocios();
+            ObjConsultar.Fnt_ConsultarClinte(TxtId.Text);
+            TxtNombre.Text = ObjConsultar.aux[0];
+            TxtContacto.Text = ObjConsultar.aux[1];
+            TxtCorreo.Text = ObjConsultar.aux[2];
+            TxtEdad.Text = ObjConsultar.aux[3];
+            TxtIngresos.Text = ObjConsultar.aux[4];
+            TxtEmpresa.Text = ObjConsultar.aux[5];
+            TxtConEmpre.Text = ObjConsultar.aux[6];
+            CbxSexo.SelectedIndex = Convert.ToInt32(ObjConsultar.aux[7]);
+            CbxEstado.SelectedIndex = Convert.ToInt32(ObjConsultar.aux[8]);       
+            lblMensaje.Text = ObjConsultar.msn;
+            if (lblMensaje.Text == "")
+            {
+                Fnt_BloqueoTeclado();
+            }
+        }
+        protected void Fnt_BloqueoTeclado()
+        {
+            btn0.Enabled = false;
+            btn1.Enabled = false;
+            btn2.Enabled = false;
+            btn3.Enabled = false;
+            btn4.Enabled = false;
+            btn5.Enabled = false;
+            btn6.Enabled = false;
+            btn7.Enabled = false;
+            btn8.Enabled = false;
+            btn9.Enabled = false;
+            BtnEnter.Enabled = false;
+            TxtNombre.Enabled = false;
+            CbxSexo.Enabled = false;
+        }
+
+        private void BtnEnter_Click(object sender, EventArgs e)
+        {
+            Fnt_ConsultarCliente();
+        }
+
+        private void nuevoToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            Fnt_LimpiarControles();
+        }
+        private void Fnt_ActualizarCliente()
+        {
+            ClsClientes_Negocios ObjActualizar = new ClsClientes_Negocios();
+            ObjActualizar.Fnt_Actualizar
+            (
+            TxtId.Text, TxtContacto.Text, TxtCorreo.Text, TxtEdad.Text,
+            TxtIngresos.Text,
+            TxtEmpresa.Text, TxtConEmpre.Text,
+            Convert.ToString(CbxEstado.SelectedValue)
+            );
+            lblMensaje.Text = ObjActualizar.msn;
+        }
+        private void actualizarToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            Fnt_ActualizarCliente();
         }
     }
 }
