@@ -459,5 +459,10 @@ namespace Presentacion
             this.tblCredencialesTableAdapter.Fill(this.dB_CreditosDataSet.TblCredenciales);
 
         }
+
+        private void button1_Click(object sender, EventArgs e)
+        {
+            Application.Exit();
+        }
     }
 }
